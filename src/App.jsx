@@ -12,7 +12,7 @@ function App() {
   return (
 
       <div className="bg-hero h-screen bg-cover bg-no-repeat bg-center flex flex-col justify-center">
-        <div className="backdrop-filter backdrop-blur-xl w-full lg:w-2/3 mx-auto py-9 px-10 rounded-xl shadow-2xl">
+        <div className="backdrop-filter backdrop-blur-xl w-full h-screen md:h-auto lg:w-2/3 mx-auto py-9 px-10 rounded-xl shadow-2xl">
 
           <SeccionesBtn />
 

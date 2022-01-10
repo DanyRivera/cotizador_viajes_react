@@ -11,6 +11,8 @@ const useSelect = (label, opciones) => {
 
             <select
                 className='p-3 w-full text-md mt-2 rounded border-0'
+                onChange={e => setState(e.target.value)}
+                value={state}
             >
 
                 <option value="">-- Selecciona --</option>

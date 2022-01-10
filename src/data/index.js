@@ -14,6 +14,22 @@ export const origenes = [
 
 ]
 
+//Aerolíneas
+export const aerolineas = [
+    {value: 'AeroMexico', id: 1},
+    {value: 'Interject', id: 2},
+    {value: 'Volaris', id: 3},
+    {value: 'Viva', id: 4},
+    {value: 'American Airlines', id: 5},
+    {value: 'AeroMar', id: 6},
+    {value: 'Air Canada', id: 7},
+    {value: 'Air France', id: 8},
+    {value: 'Delta', id: 9},
+    {value: 'KLM', id: 10},
+    {value: 'Latam Airlines', id: 11},
+    {value: 'Emirates', id: 12}
+];
+
 //Horarios
 export const horarios = [
     {value: '1:00', id: 1},
@@ -47,7 +63,7 @@ export const clases = [
     {value: 'Económica', id: 1},
     {value: 'Standard', id: 2},
     {value: 'Premium', id: 3}
-]
+];
 
 //Estrellas
 export const estrellasHospedaje = [
@@ -56,9 +72,39 @@ export const estrellasHospedaje = [
     {value: 3, id: 3},
     {value: 2, id: 2},
     {value: 1, id: 1}
-]
+];
 
 //Servicios
 export const servicios = [
-    {value: '', id: 1},
+    {value: 'Completo(comida - experiencias - hospedaje)', id: 1},
+    {value: 'Solo Hospedaje', id: 2},
+];
+
+//Noches
+export const nochesHospedaje = [
+    {value: 1, id: 1},
+    {value: 2, id: 2},
+    {value: 3, id: 3},
+    {value: 4, id: 4},
+    {value: 5, id: 5},
+    {value: 6, id: 6},
+    {value: 7, id: 7},
+    {value: 10, id: 10},
+    {value: 14, id: 14},
+];
+
+//Habitaciones
+export const habitacionesHospedaje = [
+    {value: 1, id: 1},
+    {value: 2, id: 2},
+    {value: 3, id: 3},
+    {value: 4, id: 4},
+    {value: 5, id: 5}
 ]
+
+//Zonas
+export const zonas = [
+    {value: 'Ciudad', id: 1},
+    {value: 'Playa', id: 2},
+    {value: 'Aislada', id: 2},
+];

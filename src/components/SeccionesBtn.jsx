@@ -15,7 +15,7 @@ const BtnSecciones = () => {
         {secciones.map(seccionArr => (
           
           <button 
-            className={`py-5 text-[18px] text-center px-9 ${seccion === seccionArr ? 'bg-[#10c210] text-white' : 'efecto'}`}
+            className={`py-5 text-[18px] outline-none text-center px-9 ${seccion === seccionArr ? 'bg-[#10c210] text-white' : 'efecto'}`}
             key={seccionArr}
             onClick={e => setSeccion(e.target.value)}
             value={seccionArr}
