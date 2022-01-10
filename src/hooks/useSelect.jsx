@@ -18,9 +18,9 @@ const useSelect = (label, opciones) => {
                 {opciones.map(opcion => (
 
                     <option 
-                        value={opcion.id}
+                        value={opcion.value}
                         key={opcion.id}
-                    >{opcion.nombre}</option>
+                    >{opcion.value}</option>
 
                 ))}
 

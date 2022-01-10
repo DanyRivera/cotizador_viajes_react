@@ -1,5 +1,5 @@
 import useSelect from "../hooks/useSelect";
-import { origenes } from "../data";
+import { origenes, horarios, clases } from "../data";
 import Btn from "./Btn";
 
 const VuelosSeccion = () => {
@@ -10,8 +10,8 @@ const VuelosSeccion = () => {
     const [origen, SelectOrigen] = useSelect('Selecciona el Origen', origenes)
     const [destino, SelectDestino] = useSelect('Selecciona el Destino', origenes)
     const [aerolinea, SelectAerolinea] = useSelect('Selecciona la Aerolínea', origenes)
-    const [horario, SelectHorarios] = useSelect('Selecciona el Horario', origenes)
-    const [clase, SelectClase] = useSelect('Selecciona la Clase', origenes)
+    const [horario, SelectHorarios] = useSelect('Selecciona el Horario', horarios)
+    const [clase, SelectClase] = useSelect('Selecciona la Clase', clases)
 
     return (
         <>

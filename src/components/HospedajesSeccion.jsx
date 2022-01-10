@@ -1,14 +1,14 @@
 import useSelect from "../hooks/useSelect";
-import { origenes } from "../data";
+import { estrellasHospedaje } from "../data";
 import Btn from "./Btn";
 
 const HospedajesSeccion = () => {
 
-    const [estrellas, SelectEstrellas] = useSelect('Selecciona las Estrellas', origenes);
-    const [servicio, SelectServicio] = useSelect('Selecciona el Servicio del Hotel', origenes);
-    const [noches, SelectNoches] = useSelect('Selecciona cuantas Noches', origenes);
-    const [habitaciones, SelectHabitaciones] = useSelect('Selecciona las Habitaciones', origenes);
-    const [zona, SelectZona] = useSelect('Selecciona la Zona', origenes);
+    const [estrellas, SelectEstrellas] = useSelect('Selecciona las Estrellas', estrellasHospedaje);
+    const [servicio, SelectServicio] = useSelect('Selecciona el Servicio del Hotel', estrellasHospedaje);
+    const [noches, SelectNoches] = useSelect('Selecciona cuantas Noches', estrellasHospedaje);
+    const [habitaciones, SelectHabitaciones] = useSelect('Selecciona las Habitaciones', estrellasHospedaje);
+    const [zona, SelectZona] = useSelect('Selecciona la Zona', estrellasHospedaje);
 
     return (
         <>
