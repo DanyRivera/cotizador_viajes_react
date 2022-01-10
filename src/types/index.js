@@ -1,0 +1,1 @@
+export const CAMBIAR_SECCION = 'CAMBIAR_SECCION';

@@ -2,3 +2,15 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+.efecto {
+    background-image: linear-gradient(to right, #10c210 50%, #fff 50%);
+    background-size: 200%;
+    background-repeat: no-repeat;
+    background-position: right;
+    transition: all .3s ease;
+}
+
+.efecto:hover {
+    background-position: left;
+    color: #fff;
+}
