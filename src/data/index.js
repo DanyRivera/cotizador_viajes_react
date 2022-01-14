@@ -1,18 +1,3 @@
-export const origenes = [
-    {
-        value: 'Mexico',
-        id: 'mx'
-    },
-    {
-        value: 'Estados Unidos',
-        id: 'us'
-    },
-    {
-        value: 'Canada',
-        id: 'ca'
-    }
-
-]
 
 //Aerolíneas
 export const aerolineas = [
@@ -106,5 +91,5 @@ export const habitacionesHospedaje = [
 export const zonas = [
     {value: 'Ciudad', id: 1},
     {value: 'Playa', id: 2},
-    {value: 'Aislada', id: 2},
+    {value: 'Aislada', id: 3},
 ];

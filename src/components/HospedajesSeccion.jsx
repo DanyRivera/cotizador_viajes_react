@@ -1,10 +1,10 @@
 import useSelect from "../hooks/useSelect";
-import { 
-    estrellasHospedaje, 
-    servicios, 
-    nochesHospedaje, 
-    habitacionesHospedaje, 
-    zonas 
+import {
+    estrellasHospedaje,
+    servicios,
+    nochesHospedaje,
+    habitacionesHospedaje,
+    zonas
 } from "../data";
 import Btn from "./Btn";
 
@@ -16,6 +16,14 @@ const HospedajesSeccion = () => {
     const [habitaciones, SelectHabitaciones] = useSelect('Selecciona las Habitaciones', habitacionesHospedaje);
     const [zona, SelectZona] = useSelect('Selecciona la Zona', zonas);
 
+    const hospedajeObj = {
+        estrellas,
+        servicio,
+        noches,
+        habitaciones,
+        zona        
+    }
+
     return (
         <>
             <div className="md:grid grid-cols-2 lg:grid-cols-3 gap-10">
@@ -26,7 +34,7 @@ const HospedajesSeccion = () => {
                 <SelectZona />
             </div>
 
-            <Btn texto='Cotizar' />
+            <Btn hospedaje={hospedajeObj} texto='Cotizar' />
         </>
     )
 }

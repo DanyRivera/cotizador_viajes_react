@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import AppContext from "../context/AppContext";
 import useSelect from "../hooks/useSelect";
-import { origenes, aerolineas, horarios, clases } from "../data";
+import { aerolineas, horarios, clases } from "../data";
 import Btn from "./Btn";
 import axios from "axios";
 
@@ -9,9 +10,14 @@ const VuelosSeccion = () => {
     //https://www.universal-tutorial.com/rest-apis/free-rest-api-for-country-state-city
     //https://rapidapi.com/blog/most-popular-api/?utm_source=google&utm_medium=cpc&utm_campaign=Beta&utm_term=%2Bapi_b
 
+    const { vuelo, setVuelo } = useContext(AppContext);
+
     const [paises, setPaises] = useState([]);
     const [estadosOrigen, setEstadosOrigen] = useState([]);
     const [estadosDestino, seEstadosDestino] = useState([]);
+
+    //Objeto de vuelo info
+    const [vueloObj, setVueloObj] = useState({});
 
     //Todos los selects
     const [origen, SelectOrigen] = useSelect('Selecciona el Origen', paises);
@@ -22,7 +28,21 @@ const VuelosSeccion = () => {
     const [horario, SelectHorarios] = useSelect('Selecciona el Horario', horarios);
     const [clase, SelectClase] = useSelect('Selecciona la Clase', clases);
 
-    
+
+    useEffect(() => {
+
+        setVuelo({
+            origen,
+            estadoOrigen,
+            destino,
+            estadoDestino,
+            aerolinea,
+            horario,
+            clase
+        })
+
+    }, [origen, estadoOrigen, destino, estadoDestino, aerolinea, horario, clase])
+
     useEffect(() => {
 
         const consultaPaises = async () => {
@@ -36,7 +56,7 @@ const VuelosSeccion = () => {
                     "user-email": "luisdanrg10@gmail.com"
                 }
             });
-    
+
             const auth_token = req.data.auth_token;
 
             const url = 'https://www.universal-tutorial.com/api/countries/';
@@ -51,8 +71,8 @@ const VuelosSeccion = () => {
             const arrayPaises = resultado.data.map(paisApi => {
 
                 const pais = {
-                    value : paisApi.country_name,
-                    id : paisApi.country_short_name
+                    value: paisApi.country_name,
+                    id: paisApi.country_short_name
                 };
 
                 return pais;
@@ -93,8 +113,8 @@ const VuelosSeccion = () => {
             const arrayEstados = resultado.data.map(estadosApi => {
 
                 const estado = {
-                    value : estadosApi.state_name,
-                    id : estadosApi.state_name
+                    value: estadosApi.state_name,
+                    id: estadosApi.state_name
                 };
 
                 return estado;
@@ -104,9 +124,9 @@ const VuelosSeccion = () => {
 
         }
 
-        if(origen) {
+        if (origen) {
             consultarEstadoOrigen();
-        } 
+        }
 
         setEstadosOrigen([]);
 
@@ -141,8 +161,8 @@ const VuelosSeccion = () => {
             const arrayEstados = resultado.data.map(estadosApi => {
 
                 const estado = {
-                    value : estadosApi.state_name,
-                    id : estadosApi.state_name
+                    value: estadosApi.state_name,
+                    id: estadosApi.state_name
                 };
 
                 return estado;
@@ -152,14 +172,13 @@ const VuelosSeccion = () => {
 
         }
 
-        if(destino) {
+        if (destino) {
             consultarEstadoDestino();
-        } 
+        }
 
         seEstadosDestino([]);
 
-
-    }, [destino])
+    }, [destino]);
 
     return (
         <>
@@ -173,7 +192,7 @@ const VuelosSeccion = () => {
                 <SelectClase />
             </div>
 
-            <Btn texto='Continuar' />
+            <Btn vuelo={vueloObj} texto='Continuar' />
         </>
     )
 }

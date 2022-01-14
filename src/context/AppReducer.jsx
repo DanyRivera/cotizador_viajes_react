@@ -1,5 +1,8 @@
-import { 
-    CAMBIAR_SECCION 
+import {
+    CAMBIAR_SECCION,
+    DEFINIR_VUELO,
+    DEFINIR_HOSPEDAJE,
+    DEFINIR_DATOS_COTIZACION
 } from "../types";
 
 export default (state, action) => {
@@ -11,7 +14,25 @@ export default (state, action) => {
                 ...state,
                 seccion: action.payload
             }
-    
+
+        case DEFINIR_VUELO:
+            return {
+                ...state,
+                vuelo: action.payload
+            }
+
+        case DEFINIR_HOSPEDAJE:
+            return {
+                ...state,
+                hospedaje: action.payload
+            }
+
+        case DEFINIR_DATOS_COTIZACION:
+            return {
+                ...state,
+                
+            }
+
         default:
             return state;
     }
