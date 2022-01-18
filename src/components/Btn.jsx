@@ -1,21 +1,12 @@
 import { useContext } from "react";
 import AppContext from "../context/AppContext";
+import { calcularCosto } from "../helper";
 
-const Btn = ({ texto, vuelo, hospedaje }) => {
+const Btn = ({ texto }) => {
 
-    const { setVuelo, setHospedaje, setSeccion, seccion } = useContext(AppContext);
+    const { setSeccion, resetApp, seccion } = useContext(AppContext);
 
     const handleClick = () => {
-
-
-        if(vuelo) {
-            setVuelo(vuelo);
-        }
-
-        if(hospedaje) {
-            setHospedaje(hospedaje);
-        }
-
 
         if(seccion == 'Vuelos') {
             setSeccion('Hospedajes')
@@ -23,12 +14,14 @@ const Btn = ({ texto, vuelo, hospedaje }) => {
 
         if(seccion == 'Hospedajes') {
             setSeccion('Cotizacion');
+        }
 
-            //Aquí van los calculos de la cotizacion
+        if(texto == 'Resetear App') {
+            //Resetear la app
+            resetApp();
         }
 
     }
-
 
     return (
         <div className="flex justify-end mt-10">

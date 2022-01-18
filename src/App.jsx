@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AppContext from "./context/AppContext";
 import SeccionesBtn from "./components/SeccionesBtn";
 import VuelosSeccion from "./components/VuelosSeccion";
@@ -7,25 +7,40 @@ import CotizarSeccion from "./components/CotizarSeccion";
 
 function App() {
 
-  const {seccion} = useContext(AppContext);
+  const { seccion, values, setVuelo, setHospedaje, setValues } = useContext(AppContext);
+
+  useEffect(() => {
+
+
+    if (Object.keys(values).length == 7) {
+      setVuelo(values);
+    }
+
+    if (Object.keys(values).length == 5) {
+      setHospedaje(values);
+    }
+
+    setValues({});
+
+  }, [seccion])
 
   return (
 
-      <div className="bg-hero h-screen bg-cover bg-no-repeat bg-center flex flex-col justify-center">
-        <div className="backdrop-filter backdrop-blur-xl w-full h-screen md:h-auto lg:w-2/3 mx-auto py-9 px-10 rounded-xl shadow-2xl">
+    <div className="bg-hero h-160 md:h-screen bg-cover bg-center flex flex-col justify-center">
+      <div className="backdrop-filter backdrop-blur-xl w-full h-160 md:h-auto lg:w-2/3 mx-auto py-9 px-10 rounded-xl shadow-2xl">
 
-          <SeccionesBtn />
+        <SeccionesBtn />
 
-          <div className="mt-8">
+        <div className="mt-8">
 
-            {seccion === 'Vuelos' && <VuelosSeccion />}
-            {seccion === 'Hospedajes' && <HospedajesSeccion />}
-            {seccion === 'Cotizacion' && <CotizarSeccion />}
-
-          </div>
+          {seccion === 'Vuelos' && <VuelosSeccion />}
+          {seccion === 'Hospedajes' && <HospedajesSeccion />}
+          {seccion === 'Cotizacion' && <CotizarSeccion />}
 
         </div>
+
       </div>
+    </div>
 
   )
 }

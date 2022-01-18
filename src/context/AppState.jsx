@@ -1,20 +1,27 @@
 import { useReducer } from "react";
 import AppReducer from './AppReducer';
 import AppContext from "./AppContext";
-import { 
+import {
     CAMBIAR_SECCION,
     DEFINIR_VUELO,
     DEFINIR_HOSPEDAJE,
-    DEFINIR_DATOS_COTIZACION
+    DEFINIR_DATOS_COTIZACION,
+    DEFINIR_VALUES,
+    RESETEAR_APP
 } from "../types";
 
 const AppState = props => {
 
     const initialState = {
         seccion: 'Vuelos',
-        vuelo: {},
-        hospedaje: {},
-        cotizacion: {}
+        vuelo: {
+            value: undefined
+        },
+        hospedaje: {
+            value: undefined
+        },
+        cotizacion: {},
+        values: {},
     }
 
     const [state, dispatch] = useReducer(AppReducer, initialState);
@@ -41,9 +48,23 @@ const AppState = props => {
         })
     }
 
-    const setCotizacion = () => {
+    const setCotizacion = obj => {
         dispatch({
-            type: DEFINIR_DATOS_COTIZACION
+            type: DEFINIR_DATOS_COTIZACION,
+            payload: obj
+        })
+    }
+
+    const setValues = values => {
+        dispatch({
+            type: DEFINIR_VALUES,
+            payload: values
+        })
+    }
+
+    const resetApp = () => {
+        dispatch({
+            type: RESETEAR_APP
         })
     }
 
@@ -53,10 +74,14 @@ const AppState = props => {
                 seccion: state.seccion,
                 vuelo: state.vuelo,
                 hospedaje: state.hospedaje,
+                cotizacion: state.cotizacion,
+                values: state.values,
                 setSeccion,
                 setVuelo,
                 setHospedaje,
-                setCotizacion
+                setCotizacion,
+                setValues,
+                resetApp
             }}
         >
             {props.children}

@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-const useSelect = (label, opciones) => {
+const useSelect = (label, opciones, value) => {
 
     const [state, setState] = useState('');
 
@@ -12,7 +12,7 @@ const useSelect = (label, opciones) => {
             <select
                 className='p-3 w-full text-md mt-2 rounded border-0'
                 onChange={e => setState(e.target.value)}
-                value={state}
+                value={value ? value : state}
             >
 
                 <option value="">-- Selecciona --</option>

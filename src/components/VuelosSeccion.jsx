@@ -10,38 +10,38 @@ const VuelosSeccion = () => {
     //https://www.universal-tutorial.com/rest-apis/free-rest-api-for-country-state-city
     //https://rapidapi.com/blog/most-popular-api/?utm_source=google&utm_medium=cpc&utm_campaign=Beta&utm_term=%2Bapi_b
 
-    const { vuelo, setVuelo } = useContext(AppContext);
+    const { setValues, vuelo, values } = useContext(AppContext);
 
     const [paises, setPaises] = useState([]);
     const [estadosOrigen, setEstadosOrigen] = useState([]);
-    const [estadosDestino, seEstadosDestino] = useState([]);
+    const [estadosDestino, setEstadosDestino] = useState([]);
 
-    //Objeto de vuelo info
-    const [vueloObj, setVueloObj] = useState({});
 
     //Todos los selects
-    const [origen, SelectOrigen] = useSelect('Selecciona el Origen', paises);
-    const [estadoOrigen, SelectEstadoOrigen] = useSelect('Selecciona el Estado de Origen', estadosOrigen);
-    const [destino, SelectDestino] = useSelect('Selecciona el Destino', paises);
-    const [estadoDestino, SelectEstadoDestino] = useSelect('Selecciona el Estado de Destino', estadosDestino);
-    const [aerolinea, SelectAerolinea] = useSelect('Selecciona la Aerolínea', aerolineas);
-    const [horario, SelectHorarios] = useSelect('Selecciona el Horario', horarios);
-    const [clase, SelectClase] = useSelect('Selecciona la Clase', clases);
+    const [origen, SelectOrigen] = useSelect('Selecciona el Origen', paises, values.origen || vuelo.origen);
+    const [estadoOrigen, SelectEstadoOrigen] = useSelect('Selecciona el Estado de Origen', estadosOrigen, values.estadoOrigen || vuelo.estadoOrigen);
+    const [destino, SelectDestino] = useSelect('Selecciona el Destino', paises, values.destino || vuelo.destino);
+    const [estadoDestino, SelectEstadoDestino] = useSelect('Selecciona el Estado de Destino', estadosDestino, values.estadoDestino || vuelo.estadoDestino);
+    const [aerolinea, SelectAerolinea] = useSelect('Selecciona la Aerolínea', aerolineas, values.aerolinea || vuelo.aerolinea);
+    const [horario, SelectHorarios] = useSelect('Selecciona el Horario', horarios, values.horario || vuelo.horario);
+    const [clase, SelectClase] = useSelect('Selecciona la Clase', clases, values.clase || vuelo.clase);
+
 
 
     useEffect(() => {
 
-        setVuelo({
-            origen,
-            estadoOrigen,
-            destino,
-            estadoDestino,
-            aerolinea,
-            horario,
-            clase
-        })
+        //Obetener la info para llenar el obj de vuelo
+        setValues({
+            origen: origen ? origen : vuelo.origen,
+            estadoOrigen: estadoOrigen ? estadoOrigen : vuelo.estadoOrigen,
+            destino: destino ? destino : vuelo.destino,
+            estadoDestino: estadoDestino ? estadoDestino : vuelo.estadoDestino,
+            aerolinea: aerolinea ? aerolinea : vuelo.aerolinea,
+            horario: horario ? horario : vuelo.horario,
+            clase: clase ? clase : vuelo.clase
+        });
 
-    }, [origen, estadoOrigen, destino, estadoDestino, aerolinea, horario, clase])
+    }, [origen, estadoOrigen, destino, estadoDestino, aerolinea, horario, clase]);
 
     useEffect(() => {
 
@@ -101,7 +101,7 @@ const VuelosSeccion = () => {
 
             const auth_token = req.data.auth_token;
 
-            const url = `https://www.universal-tutorial.com/api/states/${origen}`;
+            const url = `https://www.universal-tutorial.com/api/states/${origen ? origen : vuelo.origen}`;
 
             const resultado = await axios.get(url, {
                 headers: {
@@ -124,7 +124,7 @@ const VuelosSeccion = () => {
 
         }
 
-        if (origen) {
+        if (origen || vuelo.origen) {
             consultarEstadoOrigen();
         }
 
@@ -149,7 +149,7 @@ const VuelosSeccion = () => {
 
             const auth_token = req.data.auth_token;
 
-            const url = `https://www.universal-tutorial.com/api/states/${destino}`;
+            const url = `https://www.universal-tutorial.com/api/states/${destino ? destino : vuelo.destino}`;
 
             const resultado = await axios.get(url, {
                 headers: {
@@ -168,31 +168,32 @@ const VuelosSeccion = () => {
                 return estado;
             })
 
-            seEstadosDestino(arrayEstados);
+            setEstadosDestino(arrayEstados);
 
         }
 
-        if (destino) {
+        if (destino || vuelo.destino) {
             consultarEstadoDestino();
         }
 
-        seEstadosDestino([]);
+        setEstadosDestino([]);
 
     }, [destino]);
+
 
     return (
         <>
             <div className="md:grid grid-cols-2 lg:grid-cols-3 gap-10">
                 <SelectOrigen />
-                {origen && <SelectEstadoOrigen />}
+                {origen || vuelo.origen ? <SelectEstadoOrigen /> : ''}
                 <SelectDestino />
-                {destino && <SelectEstadoDestino />}
+                {destino || vuelo.origen ? <SelectEstadoDestino /> : ''}
                 <SelectAerolinea />
                 <SelectHorarios />
                 <SelectClase />
             </div>
 
-            <Btn vuelo={vueloObj} texto='Continuar' />
+            <Btn texto='Continuar' />
         </>
     )
 }

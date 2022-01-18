@@ -2,7 +2,9 @@ import {
     CAMBIAR_SECCION,
     DEFINIR_VUELO,
     DEFINIR_HOSPEDAJE,
-    DEFINIR_DATOS_COTIZACION
+    DEFINIR_DATOS_COTIZACION,
+    DEFINIR_VALUES,
+    RESETEAR_APP
 } from "../types";
 
 export default (state, action) => {
@@ -30,8 +32,25 @@ export default (state, action) => {
         case DEFINIR_DATOS_COTIZACION:
             return {
                 ...state,
-                
+                cotizacion: action.payload
             }
+
+        case DEFINIR_VALUES:
+            return {
+                ...state,
+                values: action.payload,
+            }
+
+        case RESETEAR_APP:
+            return {
+                ...state,
+                seccion: 'Vuelos',
+                vuelo: {value: undefined},
+                hospedaje: {value: undefined},
+                cotizacion: {},
+                values: {}
+            }
+
 
         default:
             return state;

@@ -1,3 +1,5 @@
+import { useContext, useEffect } from "react";
+import AppContext from "../context/AppContext";
 import useSelect from "../hooks/useSelect";
 import {
     estrellasHospedaje,
@@ -10,19 +12,26 @@ import Btn from "./Btn";
 
 const HospedajesSeccion = () => {
 
-    const [estrellas, SelectEstrellas] = useSelect('Selecciona las Estrellas', estrellasHospedaje);
-    const [servicio, SelectServicio] = useSelect('Selecciona el Servicio', servicios);
-    const [noches, SelectNoches] = useSelect('Selecciona las Noches', nochesHospedaje);
-    const [habitaciones, SelectHabitaciones] = useSelect('Selecciona las Habitaciones', habitacionesHospedaje);
-    const [zona, SelectZona] = useSelect('Selecciona la Zona', zonas);
+    const { setValues, hospedaje, values } = useContext(AppContext)
 
-    const hospedajeObj = {
-        estrellas,
-        servicio,
-        noches,
-        habitaciones,
-        zona        
-    }
+    const [estrellas, SelectEstrellas] = useSelect('Selecciona las Estrellas', estrellasHospedaje, values.estrellas || hospedaje.estrellas);
+    const [servicio, SelectServicio] = useSelect('Selecciona el Servicio', servicios, values.servicio || hospedaje.servicio);
+    const [noches, SelectNoches] = useSelect('Selecciona las Noches', nochesHospedaje, values.noches || hospedaje.noches);
+    const [habitaciones, SelectHabitaciones] = useSelect('Selecciona las Habitaciones', habitacionesHospedaje, values.habitaciones || hospedaje.habitaciones);
+    const [zona, SelectZona] = useSelect('Selecciona la Zona', zonas, values.zona || hospedaje.zona);
+
+    useEffect(() => {
+
+        //Obetener la info para llenar el obj de hospedaje
+        setValues({
+            estrellas: estrellas ? estrellas : hospedaje.estrellas,
+            servicio: servicio ? servicio : hospedaje.servicio,
+            noches: noches ? noches : hospedaje.noches,
+            habitaciones: habitaciones ? habitaciones : hospedaje.habitaciones,
+            zona: zona ? zona : hospedaje.zona
+        });
+
+    }, [estrellas, servicio, noches, habitaciones, zona]);
 
     return (
         <>
@@ -34,7 +43,7 @@ const HospedajesSeccion = () => {
                 <SelectZona />
             </div>
 
-            <Btn hospedaje={hospedajeObj} texto='Cotizar' />
+            <Btn texto='Cotizar' />
         </>
     )
 }
