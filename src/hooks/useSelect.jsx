@@ -6,7 +6,7 @@ const useSelect = (label, opciones, value) => {
 
     const Select = () => (
 
-        <div className='my-7'>
+        <div className='my-7 md:my-0'>
             <label className='block text-white font-bold text-xl'>{label}</label>
 
             <select
