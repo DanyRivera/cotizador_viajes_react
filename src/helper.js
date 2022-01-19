@@ -5,7 +5,6 @@ export const calcularCosto = cotizacion => {
 
     let costo = 1000;
 
-    //Clacular clase
     switch (clase) {
 
         case 'Economica':
@@ -26,23 +25,23 @@ export const calcularCosto = cotizacion => {
 
     switch (estrellas) {
 
-        case 1:
+        case '1':
             costo = costo * 1.05
             break;
 
-        case 2:
+        case '2':
             costo = costo * 1.10
             break;
 
-        case 3:
+        case '3':
             costo = costo * 1.15
             break;
 
-        case 4:
+        case '4':
             costo = costo * 1.25
             break;
 
-        case 5:
+        case '5':
             costo = costo * 1.30
             break;
 
@@ -52,23 +51,23 @@ export const calcularCosto = cotizacion => {
 
     switch (habitaciones) {
 
-        case 1:
+        case '1':
             costo = costo * 1.05
             break;
 
-        case 2:
+        case '2':
             costo = costo * 1.10
             break;
 
-        case 3:
+        case '3':
             costo = costo * 1.15
             break;
 
-        case 4:
+        case '4':
             costo = costo * 1.20
             break;
 
-        case 5:
+        case '5':
             costo = costo * 1.25
             break;
 
@@ -78,40 +77,40 @@ export const calcularCosto = cotizacion => {
 
     switch (noches) {
 
-        case 1:
+        case '1':
             costo = costo * 1.05
             break;
 
-        case 2:
+        case '2':
             costo = costo * 1.10
             break;
 
-        case 3:
+        case '3':
             costo = costo * 1.15
             break;
 
-        case 4:
+        case '4':
             costo = costo * 1.20
             break;
 
-        case 5:
+        case '5':
             costo = costo * 1.25
             break;
 
-        case 6:
+        case '6':
             costo = costo * 1.30
             break;
 
-        case 7:
+        case '7':
             costo = costo * 1.35
             break;
 
-        case 10:
+        case '10':
             costo = costo * 1.40
             break;
 
-        case 14:
-            costo = costo * 1.25
+        case '14':
+            costo = costo * 1.45
             break;
 
         default:
@@ -148,8 +147,10 @@ export const calcularCosto = cotizacion => {
 
         default:
             break;
+
     }
 
-    console.log(costo);
+
+    return costo;
 
 }

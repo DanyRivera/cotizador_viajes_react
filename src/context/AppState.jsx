@@ -7,7 +7,8 @@ import {
     DEFINIR_HOSPEDAJE,
     DEFINIR_DATOS_COTIZACION,
     DEFINIR_VALUES,
-    RESETEAR_APP
+    RESETEAR_APP,
+    CALCULAR_COSTO
 } from "../types";
 
 const AppState = props => {
@@ -22,6 +23,7 @@ const AppState = props => {
         },
         cotizacion: {},
         values: {},
+        costo: 0
     }
 
     const [state, dispatch] = useReducer(AppReducer, initialState);
@@ -68,6 +70,13 @@ const AppState = props => {
         })
     }
 
+    const setCosto = costo => {
+        dispatch({
+            type: CALCULAR_COSTO,
+            payload: costo
+        })
+    }
+
     return (
         <AppContext.Provider
             value={{
@@ -76,12 +85,14 @@ const AppState = props => {
                 hospedaje: state.hospedaje,
                 cotizacion: state.cotizacion,
                 values: state.values,
+                costo: state.costo,
                 setSeccion,
                 setVuelo,
                 setHospedaje,
                 setCotizacion,
                 setValues,
-                resetApp
+                resetApp,
+                setCosto
             }}
         >
             {props.children}

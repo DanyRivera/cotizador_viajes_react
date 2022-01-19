@@ -4,7 +4,8 @@ import {
     DEFINIR_HOSPEDAJE,
     DEFINIR_DATOS_COTIZACION,
     DEFINIR_VALUES,
-    RESETEAR_APP
+    RESETEAR_APP,
+    CALCULAR_COSTO
 } from "../types";
 
 export default (state, action) => {
@@ -41,14 +42,21 @@ export default (state, action) => {
                 values: action.payload,
             }
 
+        case CALCULAR_COSTO:
+            return {
+                ...state,
+                costo: action.payload,
+            }
+
         case RESETEAR_APP:
             return {
                 ...state,
                 seccion: 'Vuelos',
-                vuelo: {value: undefined},
-                hospedaje: {value: undefined},
+                vuelo: { value: undefined },
+                hospedaje: { value: undefined },
                 cotizacion: {},
-                values: {}
+                values: {},
+                costo: 0
             }
 
 

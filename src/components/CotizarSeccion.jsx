@@ -8,7 +8,14 @@ const CotizarSeccion = () => {
 
     const [mensaje, setMensaje] = useState(true);
 
-    const { cotizacion, vuelo, hospedaje, setCotizacion } = useContext(AppContext);
+    const { cotizacion, vuelo, hospedaje, costo, setCotizacion, setCosto } = useContext(AppContext);
+
+    const formatearCosto = costo => {
+        return costo.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        })
+    }
 
     useEffect(() => {
 
@@ -16,9 +23,6 @@ const CotizarSeccion = () => {
             ...hospedaje,
             ...vuelo
         }
-
-        //Aquí van los calculos de la cotizacion
-        calcularCosto(cotizacion);
 
         setCotizacion(obj);
 
@@ -31,7 +35,12 @@ const CotizarSeccion = () => {
             const arrErr = Object.values(cotizacion).filter(value => value == undefined);
 
             if (arrErr.length == 0) {
+                
                 setMensaje(false);
+
+                const costoFormateado = formatearCosto(calcularCosto(cotizacion));
+
+                setCosto(costoFormateado);
             }
 
         }
@@ -54,7 +63,7 @@ const CotizarSeccion = () => {
                     <div className="mb-12 w-full text-center">
                         <p
                             className="text-5xl text-white">
-                            <span className="text-5xl font-bold">Costo: </span>$5,464.60
+                            <span className="text-5xl font-bold">Costo: </span>{costo}
                         </p>
                     </div>
 
